@@ -20,14 +20,14 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btn_touroku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="戻る"
             android:width="150sp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_ment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="削除"

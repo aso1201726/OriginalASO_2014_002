@@ -1,26 +1,59 @@
 package jp.ac.st.asojuku.original2014002;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 @SuppressWarnings("unused")
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity implements
+View.OnClickListener{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+
+	@Override
+	public void onClick(View v) {
+		// TODO 自動生成されたメソッド・スタブ
+		switch(v.getId()){
+		case R.id.btn_ment:
+			Intent intent = new Intent(MainActivity.this, Kotoba_List.class);
+			startActivity(intent);
+			break;
+
+		case R.id.btn_check:
+			Intent intent2 = new Intent(MainActivity.this,Kotoba_View.class);
+			startActivity(intent2);
+			break;
+
+
+		}
+
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO 自動生成されたメソッド・スタブ
+		super.onResume();
+
+		Button btn_ment = (Button)findViewById(R.id.btn_ment);
+		btn_ment.setOnClickListener(this);
+
+		Button btn_touroku = (Button)findViewById(R.id.btn_touroku);
+		btn_touroku.setOnClickListener(this);
+
+		Button btn_check = (Button)findViewById(R.id.btn_check);
+		btn_check.setOnClickListener(this);
 	}
 
 	@Override
