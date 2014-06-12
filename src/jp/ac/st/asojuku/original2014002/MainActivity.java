@@ -2,6 +2,8 @@ package jp.ac.st.asojuku.original2014002;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,10 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
-@SuppressWarnings("unused")
+
 public class MainActivity extends Activity implements
 View.OnClickListener{
+
+	SQLiteDatabase sdb = null;
+	MySQLiteOpenHelper helper  = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,18 +31,36 @@ View.OnClickListener{
 	@Override
 	public void onClick(View v) {
 		// TODO 自動生成されたメソッド・スタブ
+
+		Intent intent = null;
+
 		switch(v.getId()){
 		case R.id.btn_ment:
-			Intent intent = new Intent(MainActivity.this, Kotoba_List.class);
+			intent = new Intent(MainActivity.this, Kotoba_List.class);
 			startActivity(intent);
 			break;
 
 		case R.id.btn_check:
-			Intent intent2 = new Intent(MainActivity.this,Kotoba_View.class);
-			startActivity(intent2);
+			String hitokoto = helper.selectRandomHitokoto(sdb);
+
+			intent = new Intent(MainActivity.this,Kotoba_View.class);
+			intent.putExtra("hitokoto",hitokoto);
+
+			startActivity(intent);
 			break;
 
+		case R.id.btn_touroku:
 
+			EditText moji = (EditText)findViewById(R.id.txt_kotoba);
+			String inputMsg = moji.getText().toString();
+
+			if(inputMsg!=null && !inputMsg.isEmpty()){
+
+				helper.insertHitokoto(sdb, inputMsg);
+
+			}
+			moji.setText("");
+			break;
 		}
 
 	}
@@ -54,6 +78,17 @@ View.OnClickListener{
 
 		Button btn_check = (Button)findViewById(R.id.btn_check);
 		btn_check.setOnClickListener(this);
+
+		if(sdb == null){
+			helper = new MySQLiteOpenHelper(getApplicationContext());
+		}
+		try{
+			sdb = helper.getWritableDatabase();
+		}
+		catch(SQLiteException e){
+			//異常しゅ～りょ～
+			return;
+		}
 	}
 
 	@Override

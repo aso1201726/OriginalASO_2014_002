@@ -21,9 +21,9 @@ View.OnClickListener{
 		// TODO 自動生成されたメソッド・スタブ
 		switch(v.getId()){
 
-		case
-		R.id.btn_touroku:
-		Intent intetnt = new Intent(Kotoba_List.this, MainActivity.class);
+		case R.id.btn_touroku:
+
+		Intent intent = new Intent(Kotoba_List.this, MainActivity.class);
 		startActivity(intent);
 		break;
 		}

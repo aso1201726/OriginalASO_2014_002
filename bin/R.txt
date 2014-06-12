@@ -301,7 +301,7 @@ int id submit_area 0x7f050039
 int id tabMode 0x7f050002
 int id title 0x7f05002b
 int id top_action_bar 0x7f050020
-int id txt1 0x7f05003d
+int id txt1koto 0x7f05003d
 int id txt2 0x7f05003e
 int id txt_kotoba 0x7f05003f
 int id up 0x7f050021
