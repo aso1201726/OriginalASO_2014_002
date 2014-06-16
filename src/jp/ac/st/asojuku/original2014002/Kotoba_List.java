@@ -2,12 +2,20 @@ package jp.ac.st.asojuku.original2014002;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 public class Kotoba_List extends Activity implements
-View.OnClickListener{
+View.OnClickListener, AdapterView.OnItemClickListener{
+	SQLiteDatabase sdb = null;
+
+	MySQLiteOpenHelper helper = null;
+
+	int selectId = -1;
+	int lastposition = -1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +42,7 @@ View.OnClickListener{
 		// TODO 自動生成されたメソッド・スタブ
 		super.onResume();
 		Button btn_touroku = (Button)findViewById(R.id.btn_touroku);
+		Button btn_check = (Button)findViewById(R.id.);
 		btn_touroku.setOnClickListener(this);
 	}
 
