@@ -27,8 +27,8 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO 自動生成されたメソッド・スタブ
-		db.execSQL("CREATE TABLE IF NOT EXISTS"+
-		"hitokoto (_id INTEGER PRIMARY KEY AUTOINCREMENT NOY NULL , kotoba TEXT)");
+		db.execSQL("CREATE TABLE IF NOT EXISTS "+
+		"hitokoto (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , kotoba TEXT)");
 	}
 
 	@Override
@@ -45,12 +45,12 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 	 */
 
 	public void insertHitokoto(SQLiteDatabase db, String inputMsg){
-		String sqlll = "insert into Hitokoto (kotoba) values('"+ inputMsg +"')";
+		String sqlstr = "insert into Hitokoto (phrase) values('"+ inputMsg +"')";
 
 		try{
 			//トランザクション開始
 			db.beginTransaction();
-			db.execSQL(sqlll);
+			db.execSQL(sqlstr);
 			//トランザクション成功
 			db.setTransactionSuccessful();
 		} catch(SQLException e){
@@ -70,11 +70,11 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
 		String rtString = null;
 
-		String sqlste = " SELECT _id, kotoba FROM Hitokoto ORDER BY RANDOM(); ";
+		String sqlstr = " SELECT _id, phrase FROM Hitokoto ORDER BY RANDOM(); ";
 
 		try{
 
-			SQLiteCursor curcur = (SQLiteCursor)db.rawQuery(sqlste, null);
+			SQLiteCursor curcur = (SQLiteCursor)db.rawQuery(sqlstr, null);
 
 			if(curcur.getCount()!=0){
 
@@ -90,7 +90,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
 		}
 
-		return sqlste;
+		return sqlstr;
 	}
 	public SQLiteCursor selectHitokotoList(SQLiteDatabase db){
 

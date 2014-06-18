@@ -1118,8 +1118,8 @@ containing a value of this type.
         public static final int image=0x7f050027;
         public static final int imageView1=0x7f050045;
         public static final int listMode=0x7f050001;
-        public static final int listView1=0x7f050044;
         public static final int list_item=0x7f050029;
+        public static final int lst_hitokoto=0x7f050044;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
