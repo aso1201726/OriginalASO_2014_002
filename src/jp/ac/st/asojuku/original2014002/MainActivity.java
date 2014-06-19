@@ -41,25 +41,25 @@ View.OnClickListener{
 			break;
 
 		case R.id.btn_check:
-			String hitokoto = helper.selectRandomHitokoto(sdb);
+			String strHitokoto = helper.selectRandomHitokoto(sdb);
 
 			intent = new Intent(MainActivity.this,Kotoba_View.class);
-			intent.putExtra("hitokoto",hitokoto);
+			intent.putExtra("hitokoto",strHitokoto);
 
 			startActivity(intent);
 			break;
 
 		case R.id.btn_touroku:
 
-			EditText moji = (EditText)findViewById(R.id.txt_kotoba);
-			String inputMsg = moji.getText().toString();
+			EditText etv = (EditText)findViewById(R.id.txt_kotoba);
+			String inputMsg = etv.getText().toString();
 
 			if(inputMsg!=null && !inputMsg.isEmpty()){
 
 				helper.insertHitokoto(sdb, inputMsg);
 
 			}
-			moji.setText("");
+			etv.setText("");
 			break;
 		}
 

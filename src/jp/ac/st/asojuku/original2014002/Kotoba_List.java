@@ -33,11 +33,14 @@ View.OnClickListener, AdapterView.OnItemClickListener{
 protected void onResume() {
 	// TODO 自動生成されたメソッド・スタブ
 	super.onResume();
-	Button btn_touroku = (Button)findViewById(R.id.btn_touroku);
+	Button btn_Delete = (Button)findViewById(R.id.btn_Delete);
+	Button btn_ment = (Button)findViewById(R.id.btn_ment);
 	ListView lstHitokoto = (ListView)findViewById(R.id.lst_hitokoto);
 
-	btn_touroku.setOnClickListener(this);
-	lstHitokoto.setOnClickListener(this);
+	btn_Delete.setOnClickListener(this);
+	btn_ment.setOnClickListener(this);
+
+	lstHitokoto.setOnItemClickListener(this);
 
 	this.setDBValuetoList(lstHitokoto);
 }
@@ -59,7 +62,7 @@ protected void onResume() {
 		cursor = this.helper.selectHitokotoList(sdb);
 
 		int db_layout = android.R.layout.simple_list_item_activated_1;
-		String[]from = {"kotoba"};
+		String[]from = {"phrase"};
 		int[]to = new int[]{android.R.id.text1};
 
 		SimpleCursorAdapter adapter=

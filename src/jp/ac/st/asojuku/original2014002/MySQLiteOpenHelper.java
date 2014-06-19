@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 
-@SuppressWarnings("unused")
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
 	/**
@@ -20,7 +19,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
 	public MySQLiteOpenHelper(Context context){
 
-		super(context, "2014021201726.sqlite3", null, 1);
+		super(context, "2014021201726.sqlite3", null, 2);
 
 	}
 
@@ -28,7 +27,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO 自動生成されたメソッド・スタブ
 		db.execSQL("CREATE TABLE IF NOT EXISTS "+
-		"hitokoto (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , kotoba TEXT)");
+		"Hitokoto (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , phrase TEXT)");
 	}
 
 	@Override
@@ -45,7 +44,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 	 */
 
 	public void insertHitokoto(SQLiteDatabase db, String inputMsg){
-		String sqlstr = "insert into Hitokoto (phrase) values('"+ inputMsg +"')";
+		String sqlstr = " insert into Hitokoto (phrase) values('"+ inputMsg +"');";
 
 		try{
 			//トランザクション開始
@@ -74,15 +73,15 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
 		try{
 
-			SQLiteCursor curcur = (SQLiteCursor)db.rawQuery(sqlstr, null);
+			SQLiteCursor cursor = (SQLiteCursor)db.rawQuery(sqlstr, null);
 
-			if(curcur.getCount()!=0){
+			if(cursor.getCount()!=0){
 
-				curcur.moveToFirst();
-				rtString = curcur.getString(1);
+				cursor.moveToFirst();
+				rtString = cursor.getString(1);
 
 			}
-			curcur.close();
+			cursor.close();
 		}catch(SQLException e){
 			Log.e("エラー",e.toString());
 		}finally{
@@ -90,13 +89,13 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
 		}
 
-		return sqlstr;
+		return rtString;
 	}
 	public SQLiteCursor selectHitokotoList(SQLiteDatabase db){
 
 		SQLiteCursor cursor = null;
 
-		String sqlstr = "SELECT _id,phrase FRONM Hitokoto ORDER BY _id;";
+		String sqlstr = " SELECT _id, phrase FROM Hitokoto ORDER BY _id; ";
 		try{
 			cursor = (SQLiteCursor)db.rawQuery(sqlstr,null);
 			if(cursor.getCount()!=0){

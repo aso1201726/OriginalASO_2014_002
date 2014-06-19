@@ -21,10 +21,10 @@ public class Kotoba_View extends Activity {
 
 		Intent intent = this.getIntent();
 
-		String hitokoto = intent.getStringExtra("hitokoto");
+		String strHitokoto = intent.getStringExtra("hitokoto");
 
 		TextView txtHITOKOTO = (TextView)findViewById(R.id.txt1koto);
-		txtHITOKOTO.setText(hitokoto);
+		txtHITOKOTO.setText(strHitokoto);
 	}
 
 
