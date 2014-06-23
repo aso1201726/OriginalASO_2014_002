@@ -111,7 +111,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 	}
 public void deleteHitokoto(SQLiteDatabase db, int id){
 
-	String sqlstr = "DELETE FROM Hitokoto where_id= "+ id +";";
+	String sqlstr = "DELETE FROM Hitokoto WHERE _id= "+ id +";";
 	try{
 
 		db.beginTransaction();

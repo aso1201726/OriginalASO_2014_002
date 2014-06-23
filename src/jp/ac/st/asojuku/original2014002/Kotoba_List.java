@@ -1,5 +1,6 @@
 package jp.ac.st.asojuku.original2014002;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+@SuppressLint("InlinedApi")
 public class Kotoba_List extends Activity implements
 View.OnClickListener, AdapterView.OnItemClickListener{
 	SQLiteDatabase sdb = null;
@@ -34,7 +36,7 @@ protected void onResume() {
 	// TODO 自動生成されたメソッド・スタブ
 	super.onResume();
 	Button btn_Delete = (Button)findViewById(R.id.btn_Delete);
-	Button btn_back = (Button)findViewById(R.id.btn_ment);
+	Button btn_back = (Button)findViewById(R.id.btn_back);
 	ListView lstHitokoto = (ListView)findViewById(R.id.lst_hitokoto);
 
 	btn_Delete.setOnClickListener(this);
