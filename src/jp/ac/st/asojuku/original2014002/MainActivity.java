@@ -21,6 +21,8 @@ View.OnClickListener{
 	SQLiteDatabase sdb = null;
 	MySQLiteOpenHelper helper  = null;
 
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
